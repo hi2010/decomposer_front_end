@@ -1,16 +1,15 @@
 # decomposer_front_end
 
-A new Flutter project.
+A Flutter app to make the usage of [Part decomposition for additive manufacturing](https://github.com/hi2010/Part-decomposition-for-additive-manufacturing) more convenient
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Download the decomposition app for your os.
+Then open this app and got to the settings page.
+Set the decomposer path by clicking on the arrow in the gui.
+From the filepicker choose the starting script of the decomposer application.
+Afterwards you may go on profile settings page and create a profile.
+To start a decomposition go on the overview page and create a job by clicking add.
+The file needs to be of 3mf format to work.
+For 3mf creation (from obj) [obj23mf](https://github.com/hi2010/obj23mf) is recommended.
+To know where the results of the decomposition get stored look at the console on the lower part of the gui application, ..., but it should be in the same folder as the original 3mf file.
