@@ -54,7 +54,7 @@ class DecompositionJobsystem {
     };
     var jobArgs = job.decompProfile.toCommandStringList();
     jobArgs.add(job.originFile.absolute.path);
-    jobArgs.add(job.targetPath.absolute.path + job.targetStemName);
+    jobArgs.add(job.targetPath.absolute.path + job.targetStemName + "\\");
     _log("will exec proc using: exec: ${execPath.absolute.path} args: $jobArgs");
     var jobResultCode = procrunner.execute(execPath.absolute.path, jobArgs);
     jobResultCode.then((value) => job.status = value);
