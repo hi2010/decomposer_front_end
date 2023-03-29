@@ -39,8 +39,8 @@ ios/
 build/windows/*
 !build/windows/runner
 build/windows/runner/*
-!build/windows/runner/Release/
-!build/windows/runner/Debug/
+!*/build/windows/runner/Release/
+!*/build/windows/runner/Debug/
 
 # Symbolication related
 app.*.symbols
