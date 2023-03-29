@@ -35,6 +35,10 @@ android/
 ios/
 
 # bins
+!build/windows
+build/windows/*
+!build/windows/runner
+build/windows/runner/*
 !build/windows/runner/Release/
 !build/windows/runner/Debug/
 
