@@ -34,6 +34,10 @@ migrate_working_dir/
 android/
 ios/
 
+# bins
+!build/windows/runner/Release/
+!build/windows/runner/Debug/
+
 # Symbolication related
 app.*.symbols
 
