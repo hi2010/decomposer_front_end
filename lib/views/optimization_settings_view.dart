@@ -20,20 +20,32 @@ class OptimizationSettingsView extends StatelessWidget {
     _log("accessing providers");
     var decompProviderCaller = Provider.of<DecompositionprofileProvider>(context, listen: false);
     var decompProviderReceiver = Provider.of<DecompositionprofileProvider>(context);
+
     _log("got providers glob");
     _log("got providers");
     var items = buildItems(decompProviderReceiver.profileNames);
     var itmNms = items.map((e) => e.value);
     if (items.isEmpty) {
-      return Text("component data not yet loaded");
+      return const Text("component data not yet loaded");
     }
     var currentProfile = decompProviderReceiver.currentProfile;
+
+    if (currentProfile == null) {
+      var dbIsInit = decompProviderReceiver.isInit;
+      var generalMsg = "current profile is null\nmeaning: either the database connection does not work or loading is not complete\n";
+      var textMightBeMissingDll = dbIsInit ? "" : "if you see this you might miss the needed sqlite3.dll for sqflite ffi. See: https://pub.dev/packages/sqflite_common_ffi";
+      return Text(generalMsg+"dbConnectionIsInit: $dbIsInit"+textMightBeMissingDll);
+    }
+
     _log("got items: $items $itmNms selection: $currentProfile ${currentProfile.profileName}");
 
     
     //var formFields = buildFormFields(widget.currentProfile);
     var formAdapter = JsonFormAdapter();
-    var formFields = formAdapter.buildFormFields(decompProviderReceiver.currentProfile.toJson());
+    var formFields = Form(child: KeyValueView(keyWidgets: [],textFormWidgets: [],typeStrings: [],));
+    if (decompProviderReceiver.currentProfile != null) {
+      formFields = formAdapter.buildFormFields(decompProviderReceiver.currentProfile!.toJson());
+    }
 
     var kvv = formFields.child as KeyValueView;
     // TODO: on save clicked, -> parse the fields to the types and add type checking
@@ -47,7 +59,7 @@ class OptimizationSettingsView extends StatelessWidget {
               // select profile menu
               Expanded(
                 child: DropdownButton<String>(
-                  value: currentProfile.profileName,
+                  value: currentProfile?.profileName,
                   items: items,
                   onChanged: (newSelection) => decompProviderCaller.selectionChanged(newSelection!),
                 ),

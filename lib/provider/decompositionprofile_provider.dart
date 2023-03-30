@@ -11,6 +11,7 @@ class DecompositionprofileProvider extends ChangeNotifier {
 
   // for debug
   bool isAlive = true;
+  bool isInit = false;
 
   void _log(String text) {
     log(text, name: "DecompositionprofileProvider");
@@ -20,8 +21,8 @@ class DecompositionprofileProvider extends ChangeNotifier {
   Future<DatabaseDecompositionprofile> dbCreator;
 
   String selection = "";
-  late List<String> profileNames;
-  late Decompositionprofile currentProfile;
+  List<String> profileNames = ["error could not init db or profile names"];
+  Decompositionprofile? currentProfile;
 
   DecompositionprofileProvider() : dbCreator = DatabaseDecompositionprofile.create() {
     dbCreator.then(_initVars);
@@ -41,7 +42,10 @@ class DecompositionprofileProvider extends ChangeNotifier {
     await dbp.getAllProfiles();
     profileNames = await dbp.getAllProfileNames();
     selection = profileNames[0];
-    currentProfile = await getCurrentDecompositionProfile();
+    var cp = await getCurrentDecompositionProfile();
+    assert(cp != null);
+    currentProfile = cp!;
+    isInit = true;
     // is init
     notifyListeners();
   }
@@ -70,11 +74,11 @@ class DecompositionprofileProvider extends ChangeNotifier {
     selection = newSelection;
     _log("new selection: $selection");
     await getCurrentDecompositionProfile();
-    _log("updated profile to: ${currentProfile.toJson()}");
+    _log("updated profile to: ${currentProfile!.toJson()}");
     notifyListeners();
   }
 
-  Future<Decompositionprofile> getCurrentDecompositionProfile() async {
+  Future<Decompositionprofile?> getCurrentDecompositionProfile() async {
     var curDecompprof = await dbDecomppro.getProfileByName(selection);
     currentProfile = curDecompprof!;
     return currentProfile;

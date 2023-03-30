@@ -24,3 +24,7 @@ Adjust decomposition settings
 
 Create a decomposition job (valid 3mf file !)
 ![Create a decomposition job](doc\imgs\Overview.jpg)
+
+## Build info:
+This app uses [sqfliteffi](https://pub.dev/packages/sqflite_common_ffi).
+Because of this the sqlite3.dll needs to be in the same folder as the exe for the database part to work.

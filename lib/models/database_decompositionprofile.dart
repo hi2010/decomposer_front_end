@@ -39,6 +39,7 @@ class DatabaseDecompositionprofile {
 
     var db = await component._openDb();
     component.database = db;
+    assert(db.isOpen);
     return component;
   }
 
@@ -125,7 +126,7 @@ class DatabaseDecompositionprofile {
   }
 
   Future<Decompositionprofile?> getProfileByName(String name) async {
-    List<Map<String, dynamic>> res = await database.query(tableName, where: "profileName=?", whereArgs: ["$name"]);
+    List<Map<String, dynamic>> res = await database.query(tableName, where: "profileName=?", whereArgs: [name]);
     if (res.isEmpty) {
       return null;
     }
@@ -154,7 +155,7 @@ class DatabaseDecompositionprofile {
 
   // there should always be at least one profile so the user has a formular from which to create its own custom ones
   // returns the update profile status int
-  Future<int> createDefaultProfile() {
+  Future<int> createDefaultProfile() async {
     var defaultProfile = Decompositionprofile(profileName: "default", printerDims: PrinterDimensions(boundingBox: Vector3(100, 100, 100)));
     var createStatus = updateProfile(defaultProfile);
     return createStatus;
