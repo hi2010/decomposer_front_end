@@ -23,7 +23,7 @@ Adjust decomposition settings
 ![Adjust decomposition settings](doc\imgs\OptimizationSettings.jpg)
 
 Create a decomposition job (valid 3mf file !)
-![Create a decomposition job](doc\imgs\Overview.jpg)
+![Create a decomposition job](.\doc\imgs\Overview.jpg)
 
 ## Build info:
 This app uses [sqfliteffi](https://pub.dev/packages/sqflite_common_ffi).
