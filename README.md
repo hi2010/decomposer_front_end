@@ -17,10 +17,10 @@ To know where the results of the decomposition get stored look at the console on
 ## Before use setup in imgs:
 
 Set decomposition executable path
-![Set decomposition executable path](doc\imgs\DecompositionPathSetting.jpg)
+![Set decomposition executable path](doc/imgs/DecompositionPathSetting.jpg)
 
 Adjust decomposition settings
-![Adjust decomposition settings](doc\imgs\OptimizationSettings.jpg)
+![Adjust decomposition settings](doc/imgs/OptimizationSettings.jpg)
 
 Create a decomposition job (valid 3mf file !)
 ![Create a decomposition job](doc/imgs/Overview.jpg)
